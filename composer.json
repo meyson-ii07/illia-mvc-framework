@@ -1,0 +1,15 @@
+{
+    "name": "illia/mvc-framework",
+    "authors": [
+        {
+            "name": "illia",
+            "email": "meyson.rylit@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
