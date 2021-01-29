@@ -5,6 +5,7 @@ use app\core\Application;
 
   $app = new Application(dirname(__DIR__));
 
-  $app->router->get('/home', 'allo');
+  $app->router->get('/home',[\app\controllers\SiteController::class, 'home']);
+  $app->router->post('/home', [\app\controllers\SiteController::class, 'home']);
 
   $app->run();
