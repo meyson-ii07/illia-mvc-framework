@@ -2,14 +2,24 @@
 
 namespace app\controllers;
 
-use app\core\Application;
+use app\core\Controller;
+use app\core\Request;
+use app\models\Student;
 
-class SiteController
+class SiteController extends Controller
 {
 
-    public function home()
+    public function main(Request $request)
     {
-        return Application::$app->router->renderView('allo');
+        $student = new Student();
+
+        var_dump($_POST);
+        var_dump($_GET);
+        if($request->isPost()) {
+            $student->handleData($request->getData());
+            $student->validate();
+        }
+        return $this->render('main', ['student' => $student]);
     }
 
 }

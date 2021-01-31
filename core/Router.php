@@ -49,7 +49,10 @@ class Router
        if (is_string($callback)) {
            return $this->renderView($callback);
        }
-       return call_user_func($callback);
+       if (is_array($callback)) {
+           $callback[0] = new $callback[0]();
+       }
+       return call_user_func($callback, $this->request);
     }
 
     /**
@@ -57,10 +60,10 @@ class Router
      * @param string $callback
      * @return string|string[]
      */
-    public function renderView(string $callback)
+    public function renderView(string $callback, $params = [])
     {
         $layoutContent = $this->renderLayout();
-        $viewContent = $this->renderJustView($callback);
+        $viewContent = $this->renderJustView($callback, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -80,8 +83,12 @@ class Router
      * @param $view
      * @return false|string
      */
-    public function renderJustView($view)
+    public function renderJustView($view, $params)
     {
+
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
         ob_start();
         require_once Application::$ROOT_DIR."/views/".$view.".php";
         return ob_get_clean();

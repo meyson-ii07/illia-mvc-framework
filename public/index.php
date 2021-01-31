@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
+use app\controllers\SiteController;
 use app\core\Application;
 
   $app = new Application(dirname(__DIR__));
 
-  $app->router->get('/home',[\app\controllers\SiteController::class, 'home']);
-  $app->router->post('/home', [\app\controllers\SiteController::class, 'home']);
+  $app->router->get('/',[SiteController::class, 'main']);
+  $app->router->post('/', [SiteController::class, 'main']);
 
   $app->run();
