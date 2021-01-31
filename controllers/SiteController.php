@@ -13,8 +13,6 @@ class SiteController extends Controller
     {
         $student = new Student();
 
-        var_dump($_POST);
-        var_dump($_GET);
         if($request->isPost()) {
             $student->handleData($request->getData());
             $student->validate();

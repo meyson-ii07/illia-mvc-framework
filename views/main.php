@@ -1,9 +1,9 @@
 <div class="w-70">
     <h1>Add student</h1>
-    <form method="get" action="">
+    <form method="post" action="/">
         <div class="form-group">
             <label for="firstname">Firstname</label>
-            <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+            <input type="text" name="firstname" class="form-control" value="<?= $student->getFirstname() ?>" id="firstname" placeholder="Firstname">
             <?php
                 foreach ($student->getErrors('firstname') as $error) {
                     echo "<small class=\"form-text text-danger\">{$error}</small>";
@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label for="lastname">Lastname</label>
-            <input type="text" class="form-control" id="lastname" placeholder="Lastname">
+            <input type="text" name="lastname" class="form-control" value="<?= $student->getLastname() ?>" id="lastname" placeholder="Lastname">
             <?php
             foreach ($student->getErrors('lastname') as $error) {
                 echo "<small class=\"form-text text-danger\">{$error}</small>";
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" name="email" class="form-control" value="<?= $student->getEmail() ?>" id="email" aria-describedby="emailHelp" placeholder="Enter email">
             <?php
             foreach ($student->getErrors('email') as $error) {
                 echo "<small class=\"form-text text-danger\">{$error}</small>";
@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label for="course">Course</label>
-            <input type="text" class="form-control" id="course" aria-describedby="course" placeholder="Course">
+            <input type="text" name="course" class="form-control" value="<?= $student->getCourse() ?>" id="course" aria-describedby="course" placeholder="Course">
             <?php
             foreach ($student->getErrors('course') as $error) {
                 echo "<small class=\"form-text text-danger\">{$error}</small>";
@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
             <label for="faculty">Faculty</label>
-            <input type="text" class="form-control" id="faculty" aria-describedby="faculty" placeholder="Faculty">
+            <input type="text" name="faculty" class="form-control" id="faculty" value="<?= $student->getFaculty() ?>" aria-describedby="faculty" placeholder="Faculty">
             <?php
             foreach ($student->getErrors('faculty') as $error) {
                 echo "<small class=\"form-text text-danger\">{$error}</small>";
