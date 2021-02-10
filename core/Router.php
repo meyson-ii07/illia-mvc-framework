@@ -21,6 +21,7 @@ class Router
     }
 
     /**
+     * Declares routs with GET method and sets callback for it
      * @param $path
      * @param $callback
      */
@@ -29,12 +30,19 @@ class Router
         $this->routes['get'][$path] = $callback;
     }
 
+    /**
+     * Declares routs with POST method and sets callback for it
+     * @param $path
+     * @param $callback
+     */
     public function post($path, $callback)
     {
         $this->routes['post'][$path] = $callback;
     }
 
     /**
+     * Resolves user request for given path
+     * returns executed callback for current rout
      * @return string|string[]
      */
     public function resolve()

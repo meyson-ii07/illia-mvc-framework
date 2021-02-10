@@ -28,7 +28,7 @@ class Application
     }
 
     /**
-     *
+     *  Echoes content of the page
      */
     public function run()
     {

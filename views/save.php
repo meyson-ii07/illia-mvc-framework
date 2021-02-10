@@ -1,6 +1,6 @@
 <div class="w-70">
     <h1>Add student</h1>
-    <form method="post" action="/">
+    <form method="post" action="/save">
         <input type="hidden" name="id" class="form-control" value="<?= $student->getId() ?>" id="id" placeholder="Firstname">
         <div class="form-group">
             <label for="firstname">Firstname</label>

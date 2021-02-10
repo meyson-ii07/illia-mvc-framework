@@ -1,6 +1,6 @@
 <div class="w-70">
     <h1>Students</h1>
-    <a class="material-icon" href="/save">add</a>
+    <a class="material-icons" href="/save">add</a>
     <table class="table">
         <thead>
         <tr>

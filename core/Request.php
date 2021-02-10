@@ -49,6 +49,7 @@ class Request
     }
 
     /**
+     * Returns data of current request
      * @return array
      */
     public function getData(): array
