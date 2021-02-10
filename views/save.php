@@ -1,13 +1,15 @@
 <div class="w-70">
     <h1>Add student</h1>
     <form method="post" action="/">
+        <input type="hidden" name="id" class="form-control" value="<?= $student->getId() ?>" id="id" placeholder="Firstname">
         <div class="form-group">
             <label for="firstname">Firstname</label>
             <input type="text" name="firstname" class="form-control" value="<?= $student->getFirstname() ?>" id="firstname" placeholder="Firstname">
+
             <?php
-                foreach ($student->getErrors('firstname') as $error) {
-                    echo "<small class=\"form-text text-danger\">{$error}</small>";
-                }
+            foreach ($student->getErrors('firstname') as $error) {
+                echo "<small class=\"form-text text-danger\">{$error}</small>";
+            }
             ?>
 
         </div>

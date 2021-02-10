@@ -6,6 +6,7 @@ use app\core\Model;
 
 class Student extends Model
 {
+    const tableName = "students";
     protected $id;
     protected $firstname;
     protected $lastname;
@@ -120,4 +121,15 @@ class Student extends Model
         $this->id = $id;
     }
 
+    public static function tableName(): string
+    {
+        return self::tableName;
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'firstname', 'lastname', 'email', 'course', 'faculty'
+        ];
+    }
 }
