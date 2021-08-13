@@ -17,6 +17,10 @@ use app\core\Application;
 
   $app = new Application(dirname(__DIR__), $config);
 
+  //TODO: csrf protection
+  $app->session->setCsrfToken();
+
+  //TODO: make routes file
   $app->router->get('/', [SiteController::class, 'list']);
   $app->router->post('/', [SiteController::class, 'list']);
   $app->router->get('/update', [SiteController::class, 'update']);

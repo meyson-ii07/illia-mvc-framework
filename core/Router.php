@@ -47,6 +47,14 @@ class Router
      */
     public function resolve()
     {
+        if ($this->request->isPost()) {
+            $token = $this->request->getCsrfToken();
+            if(Application::$app->session->checkCsrfToken($token)) {
+                Application::$app->response->setStatusCode(404);
+                return $this->renderView('400_');
+            }
+        }
+
        $path = $this->request->getPath();
        $method = $this->request->getMethod();
        $callback = $this->routes[$method][$path] ?? false;

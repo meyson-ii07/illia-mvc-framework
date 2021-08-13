@@ -69,4 +69,9 @@ class Request
 
         return $data;
     }
+
+    public function getCsrfToken()
+    {
+        return $_POST['csrf_token'] ?? null;
+    }
 }
