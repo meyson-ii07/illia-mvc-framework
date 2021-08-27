@@ -40,6 +40,11 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+    public function loadRoutes()
+    {
+        //TODO: load routes from file
+    }
+
     /**
      * Resolves user request for given path
      * returns executed callback for current rout
