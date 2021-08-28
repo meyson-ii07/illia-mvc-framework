@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\core\Services\YamlParser;
+
 class Router
 {
     protected array $routes = [];
@@ -40,9 +42,21 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+    public function any($path, $callback)
+    {
+        $this->routes['any'][$path] = $callback;
+    }
+
     public function loadRoutes()
     {
-        //TODO: load routes from file
+        $routes = YamlParser::parse(Application::$ROOT_DIR.'/routes/routes.yaml');
+        foreach ($routes as $route) {
+            if (key_exists('method', $route)) {
+                $this->routes[$route['method']][$route['path']] = [$route['controller'], $route['function']];
+            } else {
+                $this->routes['any'][$route['path']] = [$route['controller'], $route['function']];
+            }
+        }
     }
 
     /**
@@ -62,7 +76,8 @@ class Router
 
        $path = $this->request->getPath();
        $method = $this->request->getMethod();
-       $callback = $this->routes[$method][$path] ?? false;
+       //TODO: check if this works
+       $callback = ($this->routes[$method][$path] ?? $this->routes['any'][$path]) ?? false;
        if (!$callback) {
            Application::$app->response->setStatusCode(404);
            return $this->renderView('404_');

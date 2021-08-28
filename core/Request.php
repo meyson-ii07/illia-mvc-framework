@@ -7,6 +7,9 @@ namespace app\core;
 class Request
 {
 
+    public static string $GET_METHOD = 'get';
+    public static string $POST_METHOD = 'get';
+
     /**
      * Returns current path without parameters
      * @return string

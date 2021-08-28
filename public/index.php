@@ -8,8 +8,6 @@ use app\core\Services\YamlParser;
   $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
   $dotenv->load();
 
-  var_dump(YamlParser::parse(dirname(__DIR__).'/routes/routes.yaml'));
-
 //  $config = [
 //      'db' => [
 //        'dsn' => $_ENV['DB_DSN'],
@@ -18,7 +16,7 @@ use app\core\Services\YamlParser;
 //      ],
 //  ];
 //
-//  $app = new Application(dirname(__DIR__), $config);
+  $app = new Application(dirname(__DIR__), $config);
 //
 //  //TODO: csrf protection
 //  $app->session->setCsrfToken();

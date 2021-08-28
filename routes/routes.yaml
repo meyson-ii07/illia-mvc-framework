@@ -8,5 +8,7 @@
 #//  $app->router->get('/save', [SiteController::class, 'save']);
 #//  $app->router->post('/save', [SiteController::class, 'save']);
 #//  $app->router->get('/delete', [SiteController::class, 'delete']);
-awdawda:
-  method: 'allo'
+student_list:
+  path: /
+  controller: SiteController::class
+  function: list
