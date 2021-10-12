@@ -3,6 +3,7 @@
 namespace app\core;
 
 use app\core\Services\YamlParser;
+use app\controllers;
 
 class Router
 {
@@ -42,17 +43,25 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+    /**
+     * Declares routs for any method and sets callback for it
+     * @param $path
+     * @param $callback
+     */
     public function any($path, $callback)
     {
         $this->routes['any'][$path] = $callback;
     }
 
+    /**
+     * Loads routes from the routes.yaml file
+     */
     public function loadRoutes()
     {
         $routes = YamlParser::parse(Application::$ROOT_DIR.'/routes/routes.yaml');
         foreach ($routes as $route) {
             if (key_exists('method', $route)) {
-                $this->routes[$route['method']][$route['path']] = [$route['controller'], $route['function']];
+                $this->routes[strtolower($route['method'])][$route['path']] = [$route['controller'], $route['function']];
             } else {
                 $this->routes['any'][$route['path']] = [$route['controller'], $route['function']];
             }
@@ -66,6 +75,10 @@ class Router
      */
     public function resolve()
     {
+
+        /**
+         * CSRF protection
+         */
         if ($this->request->isPost()) {
             $token = $this->request->getCsrfToken();
             if(Application::$app->session->checkCsrfToken($token)) {
@@ -76,7 +89,7 @@ class Router
 
        $path = $this->request->getPath();
        $method = $this->request->getMethod();
-       //TODO: check if this works
+
        $callback = ($this->routes[$method][$path] ?? $this->routes['any'][$path]) ?? false;
        if (!$callback) {
            Application::$app->response->setStatusCode(404);
@@ -85,10 +98,13 @@ class Router
        if (is_string($callback)) {
            return $this->renderView($callback);
        }
-       if (is_array($callback)) {
-           $callback[0] = new $callback[0]();
-       }
-       return call_user_func($callback, $this->request);
+//       if (is_array($callback)) {
+//           dd(controllers\SiteController::class);
+//           require_once( Application::$ROOT_DIR.'/controllers/'.$callback[0] . '.php');
+//           $callback[0] = new $callback[0]();
+//       }
+//      //TODO: make it work with new routing
+       return call_user_func($callback);
     }
 
     /**

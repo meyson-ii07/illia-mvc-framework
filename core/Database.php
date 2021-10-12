@@ -11,7 +11,6 @@ class Database
 
     public function __construct($config)
     {
-//        var_dump($config);
         $dsn = $config['dsn'] ?? '';
         $user = $config['user'] ?? '';
         $password = $config['password'] ?? '';

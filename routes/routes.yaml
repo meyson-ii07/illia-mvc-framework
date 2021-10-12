@@ -12,3 +12,19 @@ student_list:
   path: /
   controller: SiteController::class
   function: list
+
+student_update:
+  path: /update
+  controller: SiteController::class
+  function: update
+
+student_save:
+  path: /save
+  controller: SiteController::class
+  function: save
+
+student_delete:
+  method: get
+  path: /delete
+  controller: SiteController::class
+  function: delete
