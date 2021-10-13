@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\Student;
@@ -12,7 +13,7 @@ class SiteController extends Controller
     public function list(Request $request)
     {
         $students = Student::find();
-        return $this->render('list', ['students' => $students]);
+        return $this->render('list.html.twig', ['students' => $students]);
     }
 
     public function save(Request $request)
@@ -25,7 +26,7 @@ class SiteController extends Controller
             $student->save();
             $this->redirect('');
         }
-        return $this->render('save', ['student' => $student]);
+        return $this->render('save.html.twig', ['student' => $student]);
     }
 
     public function update(Request $request)
@@ -45,13 +46,13 @@ class SiteController extends Controller
             $student->save();
             $this->redirect('');
         }
-        return $this->render('save', ['student' => $student]);
+        return $this->render('save.html.twig', ['student' => $student]);
     }
 
     public function delete(Request $request)
     {
         $id = $request->getData()['id'];
         Student::delete($id);
-        $this->redirect('');
+        $this->redirect('list');
     }
 }
