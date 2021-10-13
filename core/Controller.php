@@ -17,12 +17,12 @@ class Controller
 
     /**
      * Redirects to requested rout
-     * @param $rout
+     * @param $route
      */
-    protected function redirect($rout)
+    protected function redirect($route)
     {
         $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-        header("Location: $link/$rout");
+        header("Location: $link/$route");
         exit();
     }
 }

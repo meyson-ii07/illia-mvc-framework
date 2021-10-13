@@ -10,21 +10,21 @@
 #//  $app->router->get('/delete', [SiteController::class, 'delete']);
 student_list:
   path: /
-  controller: SiteController::class
+  controller: app\controllers\SiteController
   function: list
 
 student_update:
   path: /update
-  controller: SiteController::class
+  controller: app\controllers\SiteController
   function: update
 
 student_save:
   path: /save
-  controller: SiteController::class
+  controller: app\controllers\SiteController
   function: save
 
 student_delete:
   method: get
   path: /delete
-  controller: SiteController::class
+  controller: app\controllers\SiteController
   function: delete

@@ -3,7 +3,7 @@
 namespace app\core;
 
 use app\core\Services\YamlParser;
-use app\controllers;
+use InvalidArgumentException;
 
 class Router
 {
@@ -98,13 +98,14 @@ class Router
        if (is_string($callback)) {
            return $this->renderView($callback);
        }
-//       if (is_array($callback)) {
-//           dd(controllers\SiteController::class);
-//           require_once( Application::$ROOT_DIR.'/controllers/'.$callback[0] . '.php');
-//           $callback[0] = new $callback[0]();
-//       }
-//      //TODO: make it work with new routing
-       return call_user_func($callback);
+       if (is_array($callback)) {
+           if (!class_exists($callback[0])) {
+               throw new InvalidArgumentException(
+                   "The action controller '$callback[0]' has not been defined.");
+           }
+           $callback[0] = new $callback[0];
+       }
+       return call_user_func($callback, $this->request);
     }
 
     /**
