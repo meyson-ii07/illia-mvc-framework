@@ -2,7 +2,7 @@
 {% block head %}
     {% block title %}List{% endblock %}
 {% endblock %}
-{% blcok content %}
+{% block content %}
     <div class="w-70">
     <h1>Students</h1>
     <a class="material-icons" href="/save">add</a>
@@ -21,13 +21,13 @@
         <tbody>
             {% for student in students %}
                 <tr>
-                    <td>{{ student('id') }}</td>
-                    <td>{{ student('firstname') }}</td>
-                    <td>{{ student('lastname') }}</td>
-                    <td>{{ student('email') }}</td>
-                    <td>{{ student('course') }}</td>
-                    <td>{{ student('faculty') }}</td>
-                    <td><a class='material-icons' href='/update?id={{ student('id') }}'>create</a><a class='material-icons' href='/delete?id={{ student('id') }}'>delete</a></td>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.firstname }}</td>
+                    <td>{{ student.lastname }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.course }}</td>
+                    <td>{{ student.faculty }}</td>
+                    <td><a class='material-icons' href='/update?id={{ student.id }}'>edit</a><a class='material-icons' href='/delete?id={{ student.id }}'>delete</a></td>
                 </tr>
             {% endfor %}
         </tbody>
