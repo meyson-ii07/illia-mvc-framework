@@ -24,4 +24,9 @@ use Twig\Loader\FilesystemLoader;
     $app->session->setCsrfToken();
     $app->router->loadRoutes();
     $app->twig = $twig;
-    $app->run();
+    try {
+        $app->run();
+    }
+    catch (Exception $e) {
+        dd($e->getTraceAsString()."\n".$e->getMessage());
+    }
