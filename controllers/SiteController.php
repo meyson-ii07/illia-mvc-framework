@@ -10,15 +10,16 @@ use app\models\Student;
 class SiteController extends Controller
 {
 
-    public function list(Request $request)
+    public function list()
     {
         $students = Student::find();
         return $this->render('list.html.twig', ['students' => $students]);
     }
 
-    public function save(Request $request)
+    public function save()
     {
         $student = new Student();
+        $request = Application::$app->request;
 
         if($request->isPost()) {
             $student->handleData($request->getData());
@@ -29,8 +30,9 @@ class SiteController extends Controller
         return $this->render('save.html.twig', ['student' => $student]);
     }
 
-    public function update(Request $request)
+    public function update()
     {
+        $request = $request = Application::$app->request;
         $student = new Student();
         $id = $request->getData()['id'];
 
@@ -49,8 +51,9 @@ class SiteController extends Controller
         return $this->render('save.html.twig', ['student' => $student]);
     }
 
-    public function delete(Request $request)
+    public function delete()
     {
+        $request = Application::$app->request;
         $id = $request->getData()['id'];
         Student::delete($id);
         $this->redirect('list');

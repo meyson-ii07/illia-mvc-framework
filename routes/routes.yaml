@@ -1,13 +1,3 @@
-#name:
-#   method:
-#   controller:
-#//  $app->router->get('/', [SiteController::class, 'list']);
-#//  $app->router->post('/', [SiteController::class, 'list']);
-#//  $app->router->get('/update', [SiteController::class, 'update']);
-#//  $app->router->post('/update', [SiteController::class, 'update']);
-#//  $app->router->get('/save', [SiteController::class, 'save']);
-#//  $app->router->post('/save', [SiteController::class, 'save']);
-#//  $app->router->get('/delete', [SiteController::class, 'delete']);
 student_list:
   path: /
   controller: app\controllers\SiteController

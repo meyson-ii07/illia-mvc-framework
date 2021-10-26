@@ -102,31 +102,8 @@ class Router
            }
            $callback[0] = new $callback[0];
        }
-       return call_user_func($callback, $this->request);
+       return call_user_func($callback);
     }
-
-//    /**
-//     * Renders view
-//     * @param string $callback
-//     * @return string|string[]
-//     */
-//    public function renderView(string $callback, $params = [])
-//    {
-//        $layoutContent = $this->renderLayout();
-//        $viewContent = $this->renderJustView($callback, $params);
-//        return str_replace('{{content}}', $viewContent, $layoutContent);
-//    }
-//
-//    /**
-//     * Returns main layout
-//     * @return false|string
-//     */
-//    public function renderLayout()
-//    {
-//        ob_start();
-//        require_once Application::$ROOT_DIR."/views/layouts/main.html.twig";
-//        return ob_get_clean();
-//    }
 
     /**
      * Returns requested view
