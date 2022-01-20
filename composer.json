@@ -12,6 +12,11 @@
         }
     },
     "require": {
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "ext-yaml": "*",
+        "twig/twig": "^3.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
     }
 }

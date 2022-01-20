@@ -50,7 +50,7 @@ class Database
         if (!empty($newMigrations)) {
             $this->saveMigrations($newMigrations);
         } else {
-            echo "All migrations are applied";
+            echo "All migrations are applied".PHP_EOL;
         }
 
     }
