@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use app\core\Services\QueryBuilder;
 use PDO;
 
 abstract class Model
@@ -12,7 +13,6 @@ abstract class Model
     protected const RULE_MAX = 'max';
 
     private array $errors = [];
-    private static string $query;
 
     private const MESSAGES = [
         self::RULE_REQUIRED => 'This field is required',
@@ -229,84 +229,21 @@ abstract class Model
         return $result;
     }
 
-    public static function select(array $args = null)
+    public static function select(array $args = null): QueryBuilder
     {
-        static::$query = "SELECT ";
-        if ($args === null) {
-            static::$query .= "* ";
-        } else {
-            $selectArgs = null;
-            foreach ($args as $key => $val) {
-                if (is_array($val) && is_string(key($val))) {
-                    $arg = key($val)." as".$val.($selectArgs ? ", " : " ");
-                    $selectArgs .= $arg;
-                } else if (is_string($val)) {
-                    $selectArgs .= $val.($selectArgs ? ', ' : '');
-                }
-                $selectArgs = rtrim($selectArgs, ', ');
-            }
-            static::$query .= $selectArgs." FROM ".static::tableName();
-        }
-        return;
-    }
+        $qb = new QueryBuilder();
+        $result = $qb->select(static::tableName(), $args);
 
-    public static function where($field, string $op, $arg)
-    {
-        static::$query .= " $field $op $arg";
-        return new static;
-    }
-
-    public static function andWhere($field, string $op, $arg)
-    {
-        static::$query .= " and $field $op $arg";
-        return new static;
-    }
-
-    public static function groupBy(string $arg)
-    {
-        static::$query .= " GROUP BY $arg";
-        return new static;
-    }
-
-    public static function addGroupBy(string $arg)
-    {
-        static::$query .= ", $arg";
-        return new static;
-    }
-
-    public static function orderBy(string $arg)
-    {
-        static::$query .= "ORDER BY $arg";
-        return new static;
-    }
-
-    public static function addOrderBy(string $arg)
-    {
-        static::$query .= ", $arg";
-        return new static;
-    }
-    
-    public static function setMaxResults(int $arg)
-    {
-        static::$query .= " LIMIT $arg";
-        return new static;
-    }
-
-    public static function setOffset(int $arg)
-    {
-        static::$query .= " OFFSET $arg";
-        return new static;
-    }
-
-    public static function getResult()
-    {
-        $statement = Application::$app->db->prepareQuarry(static::$query);
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-        try {
-            $result = $statement->fetch();
-        } catch (\Exception  $e) {
-            die($e->getMessage());
-        }
+//        if (is_array($result) && $result['convert']) {
+//            $models = [];
+//            foreach ($result as $item) {
+//                $modelClass = static::class;
+//                $model = new $modelClass;
+//                $model->handleData($item);
+//                $models[] = $model;
+//            }
+//
+//        }
         return $result;
     }
 }
