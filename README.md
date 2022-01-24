@@ -9,7 +9,7 @@
 
 Потрібно встновити параметри доступу до БД:
 ```
-DB_DSN = mysql:host=127.0.0.1;port=3306;dbname=students
+DB_DSN = mysql:host=127.0.0.1;port=3306;dbname=db
 DB_USER = root
 DB_PASSWORD = password
 ```
