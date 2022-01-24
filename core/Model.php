@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use app\core\Services\QueryBuilder;
 use PDO;
 
 abstract class Model
@@ -225,6 +226,24 @@ abstract class Model
         } catch (\Exception  $e) {
             die($e->getMessage());
         }
+        return $result;
+    }
+
+    public static function select(array $args = null): QueryBuilder
+    {
+        $qb = new QueryBuilder();
+        $result = $qb->select(static::tableName(), $args);
+
+//        if (is_array($result) && $result['convert']) {
+//            $models = [];
+//            foreach ($result as $item) {
+//                $modelClass = static::class;
+//                $model = new $modelClass;
+//                $model->handleData($item);
+//                $models[] = $model;
+//            }
+//
+//        }
         return $result;
     }
 }

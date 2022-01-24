@@ -91,7 +91,7 @@ class Database
     }
 
     /**
-     * Prepers SQL quarry
+     * Prepers SQL query
      * @param $quarry
      * @return false|\PDOStatement
      */
@@ -101,7 +101,7 @@ class Database
     }
 
     /**
-     * Prepers SQL quarry
+     * Prepers SQL query
      * @param $quarry
      * @return false|\PDOStatement
      */
