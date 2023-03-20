@@ -1,11 +1,11 @@
 ---
-Вимоги
+Requirements
 -
-1. Мінімальна версія php 7.4
+1. Minimum php version 7.4
 2. MySQL 5.7
 3. Composer
-   
-**.env файл**
+
+**.env file**
 
 Потрібно встновити параметри доступу до БД:
 ```
