@@ -1,0 +1,48 @@
+{% extends "layouts/main.html.twig" %}
+{% block head %}
+    {% block title %}List{% endblock %}
+{% endblock %}
+{% block content %}
+    <div class="w-70">
+    <h1>Add student</h1>
+    <form method="post" action="/save">
+        <input type="hidden" name="id" class="form-control" value="{{ student.id }}" id="id" placeholder="Firstname">
+        <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname" class="form-control" value="{{ student.firstname }}" id="firstname" placeholder="Firstname">
+            {% for error in student.errors('firstname') %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input type="text" name="lastname" class="form-control" value="{{ student.lastname }}" id="lastname" placeholder="Lastname">
+            {% for error in student.errors('lastname') %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control" value="{{ student.email }}" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            {% for error in student.errors('email') %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="course">Course</label>
+            <input type="text" name="course" class="form-control" value="{{ student.course }}" id="course" aria-describedby="course" placeholder="Course">
+            {% for error in student.errors('course') %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="faculty">Faculty</label>
+            <input type="text" name="faculty" class="form-control" id="faculty" value="{{ student.faculty }}" aria-describedby="faculty" placeholder="Faculty">
+            {% for error in student.errors('faculty') %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
