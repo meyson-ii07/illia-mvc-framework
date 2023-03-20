@@ -11,7 +11,7 @@ Requirements
 ```
 DB_DSN = mysql:host=127.0.0.1;port=3306;dbname=db
 DB_USER = root
-DB_PASSWORD = password
+DB_PASSWORD = password321
 ```
 ---
 Розгортання проекту:
